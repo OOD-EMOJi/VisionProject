@@ -34,7 +34,7 @@ public class MazeApplication extends Application {
 		maze.generateMaze(5,5);
 		
 		Mouse mouse = new Mouse(maze.getStart().getX(), maze.getStart().getY(), new WallFollowerPathfinder(maze));
-		maze.getStart().setContents(mouse);
+		maze.getStart().addContents(mouse);
 		
 		Timeline loop = new Timeline();
 		loop.setCycleCount(Timeline.INDEFINITE);

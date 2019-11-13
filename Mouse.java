@@ -42,10 +42,10 @@ public class Mouse implements Thing {
 			
 			this.setX(curr.getX());
 			this.setY(curr.getY());
-			curr.setContents(this);
+			curr.addContents(this);
 			if (i > 0) {
 				Tile prev = path.get(i-1);
-				prev.setContents(null);
+				prev.clearContents(null);
 			}
 			i++;
 		}

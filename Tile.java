@@ -1,12 +1,12 @@
 public class Tile {
 	
-	private Thing contents;
+	private List<Thing> contents;
     private boolean isWall;
     private int x, y;
 
     public Tile(boolean isWall, int x, int y) {
         this.isWall = isWall;
-		this.contents = null;
+		this.contents = new ArrayList<Thing>();
         this.x = x;
         this.y = y;
     }
@@ -23,14 +23,22 @@ public class Tile {
 		isWall = false;
     }
 
-	public Thing getContents() {
+	public List<Thing> getContents() {
 		return contents;
 	}
 	
-	public void setContents(Thing contents) {
-		this.contents = contents;
+	public void addThing(Thing contents) {
+		this.contents.add(contents);
 	}
     
+	public void removeThing(Thing thing) {
+			this.contents.remove(thing);
+	}
+	
+	public void clearContents() {
+		contents.clear();
+	}
+	
     public int getX() {
         return x;
     }
