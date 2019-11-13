@@ -1,5 +1,7 @@
 public class Coin implements Thing{
+	
 	int x, y, value;
+	
 	public Coin( int x, int y, int value) {
 		this.x = x;
 		this.y = y;
