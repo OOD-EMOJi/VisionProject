@@ -35,10 +35,12 @@ public class DepthFirstSearchPathFinder implements Pathfinder{
         this.end = maze.tiles[width - 1][height - 2];
     }
     
-    public List<Tile> findPath(){
+    public List<Tile> findPath(Tile startTile,Tile endTile){
+        startTile = start;
+        endTile = end;
         List<Tile> path = new ArrayList<Tile>();
         boolean[][] visited = new boolean[width][height];
-        findPath(start, path, visited);
+        findPath(startTile,endTile, path, visited);
         //System.out.println(findPath(start, path, visited));
         Collections.reverse(path);
 		System.out.println(path.size());
@@ -47,10 +49,10 @@ public class DepthFirstSearchPathFinder implements Pathfinder{
     }
 
 
-        public Boolean findPath(Tile tile, List<Tile> path, boolean[][] visited){
+        public Boolean findPath(Tile startTile,Tile endTile, List<Tile> path, boolean[][] visited){
             //System.out.println("finding path!");
-            Tile currentTile = tile ;
-            if (currentTile == end)return true;
+            Tile currentTile = startTile ;
+            if (currentTile == endTile)return true;
     
             int[][] SHIFTS = {
                 {0 , 1}, // going right
@@ -69,10 +71,8 @@ public class DepthFirstSearchPathFinder implements Pathfinder{
                         if (canTraverse(neighbor, visited)){
                            // System.out.println("can traverse");
                             visited[currentTile.getX()][currentTile.getY()] = true;
-                            if(findPath(neighbor, path, visited)){
-
-                                path.add(neighbor);
-								//System.out.println("adding to path");
+                            if(findPath(neighbor,endTile , path, visited)){
+                                path.add(neighbor);				
                                 return true;   
                             }
                             
