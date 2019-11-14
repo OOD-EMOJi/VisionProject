@@ -3,7 +3,7 @@ public class CoinBotPathOptionGenerator implements PathOptionGenerator{
     
     public Maze maze;
     public List<PathOption> pathList;
-    private PathFinder DFS; 
+    private Pathfinder DFS; 
     private int  height ;
     private int  width ;
     
@@ -35,18 +35,17 @@ public class CoinBotPathOptionGenerator implements PathOptionGenerator{
               };
             for(int x= 0; x < width; x++){
                 for(int y= 0 ; y< height; y++){
-                    Tile currentTile = maze.tiles[x][y] ;
                     int counter=0;
                     if(maze.tiles[x][y].isWall()== false){
                             for (int[] shift : SHIFT) {
-                               // System.out.println("Doing shifts!");
                                 int xtemp= x +shift[0];
                                 int ytemp= y+ shift[1];  
                                 if(maze.tiles[xtemp][ytemp].isWall()== false){
                                     counter++;
-                                }
+                                 }
                             } 
                             if(counter==3)pathList.add(maze.tiles[x][y]);
+                            
                      }
                 }
              }
