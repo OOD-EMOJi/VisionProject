@@ -1,5 +1,5 @@
 import LepinskiEngine.*;
-
+import java.util.*;
 /**
 	In this implementation we analyze the possible paths that the coin bot can take,
 	based on the remembered state of the maze. To do this we use a MazeAdapter to 
@@ -27,16 +27,23 @@ import LepinskiEngine.*;
 	
 	(add more if you know any)
 **/
-public class EMOJITeam implements GameTeam {
+public class EMOJITeam implements PlayerTeam {
 	
-	MazeAdapter maze; // Lepinski's maze to our maze. (MazeAdapter extends our Maze class)
-	Map<Integer, RobotBehavior> behaviors; // keep track of each robot and their behavior
+	MazeAdapter mazeA; // Lepinski's maze to our maze. (MazeAdapter extends our Maze class)
+	Map<Integer, ModelType> behaviors; // keep track of each robot and their behavior
 	
 	public void startGame(List<Robot> bots, GameState state) {
 		//stubbed
 		//1. Initialize maze
+		mazeA.generateMaze();
 		//2. Initialize Bot Map
+		behaviors = new HashMap<Integer, ModelType>();
 		//3. Fill bot map with robot ID's and associated bot behaviors according to robot.getType()
+		for(Robot bot : bots) {
+			Integer id = bot.getID();
+			ModelType behavior = bot.getModel();
+			behaviors.put(id, behavior);
+		}
 	}
 	
 	public List<Command> requestCommands(List<Location> information, List<Robot> robotsAwaitingCommand, GameState state) {
