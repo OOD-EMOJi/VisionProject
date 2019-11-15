@@ -1,21 +1,21 @@
 import java.util.*;
 public class CoinBotBehavior implements RobotBehavior{
-     Maze maze;
      int currentTurns;
      PathOptionGenerator pathOptionGenerator;
      Robot robot;
     
-    public CoinBotBehavior(Maze maze, int currentTurns ,Robot robot , PathOptionGenerator pathOptionGenerator){
-        this.maze= maze;
+    public CoinBotBehavior(int currentTurns ,Robot robot , PathOptionGenerator pathOptionGenerator){
         this.currentTurns= currentTurns;
         this.robot = robot;
         this.pathOptionGenerator= pathOptionGenerator;
     }
-    public Command getCommand(int x, int y){
+    public Command getCommand(Location location){
         // Make paths
         List<PathOption> pathList = pathOptionGenerator.generatePathOptions(x,y,currentTurns);
         // Decide best path and get the next step
         Tile nextStep= pathList.get(pathList.size()-1).path.get(1);
+        int x= location.getX();
+        int y= location.getY();        
         int x2= nextStep.getX();
         int y2= nextStep.getY();
         Command command = new Command(robot,getDirection(x,y,x2,y2));
