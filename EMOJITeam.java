@@ -30,18 +30,27 @@ import java.util.*;
 public class EMOJITeam implements PlayerTeam {
 	
 	MazeAdapter mazeA; // Lepinski's maze to our maze. (MazeAdapter extends our Maze class)
-	Map<Integer, ModelType> behaviors; // keep track of each robot and their behavior
+	Map<Integer, RobotBehavior> behaviors; // keep track of each robot and their behavior
 	
 	public void startGame(List<Robot> bots, GameState state) {
 		//stubbed
 		//1. Initialize maze
 		mazeA.generateMaze();
 		//2. Initialize Bot Map
-		behaviors = new HashMap<Integer, ModelType>();
+		behaviors = new HashMap<Integer, RobotBehavior>();
 		//3. Fill bot map with robot ID's and associated bot behaviors according to robot.getType()
+		boolean hasLeft = false;
 		for(Robot bot : bots) {
 			Integer id = bot.getID();
-			ModelType behavior = bot.getModel();
+			ModelType type = bot.getModel();
+			RobotBehavior behavior = null;
+			if(type == ModelType.CoinBot) {
+				behavior = new CoinBotBehavior(state.turns_remaining, bot, new CoinBotPathOptionGenerator(mazeA));
+			}
+			else {
+				behavior = hasLeft ? new LeftWallScout() : new RightWallScout();
+				hasLeft = true;
+			}
 			behaviors.put(id, behavior);
 		}
 	}
@@ -54,5 +63,6 @@ public class EMOJITeam implements PlayerTeam {
 			//a. retrieve behavior from map
 			//b. call get command and add to list
 		//3. return list
+		return null;
 	}
 }

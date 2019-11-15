@@ -16,7 +16,7 @@ public class PathOption implements Comparable<PathOption> {
 	public void countPoints() {
 		points = 0;
 		earlierFactor = 0;
-		for(int i = 0; i < turns && i < path.size(); i++) {
+		for(int i = 0; i < turnsLeft && i < path.size(); i++) {
 			List<Thing> contents = path.get(i).getContents();
 			for(Thing t : contents){ 
 				if( t instanceof Coin ) {

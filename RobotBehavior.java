@@ -1,4 +1,5 @@
-// import command
+import LepinskiEngine.*;
+
 public interface RobotBehavior{
-    public Command getCommand(int x, int y);
+    public Command getCommand(Location location);
 }

@@ -1,5 +1,7 @@
+import LepinskiEngine.*;
 import static LepinskiEngine.DirType.*;
-// import command
+import java.util.*;
+
 public class LeftWallScout extends ScoutBehavior {
 	
 	//make constructor that requires location
@@ -8,12 +10,12 @@ public class LeftWallScout extends ScoutBehavior {
         List<DirType> directions = currentLocation.getDirections();
 		//We think you need to edit this this does not seem to follow the wall?
         if (directions.contains(West))
-            return new CommandMove(this, West);
+            return new CommandMove(null, West);
         else if (directions.contains(South))
-            return new CommandMove(this, South);
+            return new CommandMove(null, South);
         else if (directions.contains(North))
-            return new CommandMove(this, North);
+            return new CommandMove(null, North);
         else
-            return new CommandMove(this, East);
+            return new CommandMove(null, East);
     }
 }
