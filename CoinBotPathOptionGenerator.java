@@ -1,4 +1,6 @@
+import LepinskiEngine.*;
 import java.util.*;
+
 public class CoinBotPathOptionGenerator implements PathOptionGenerator{
     
     public Maze maze;
@@ -16,17 +18,17 @@ public class CoinBotPathOptionGenerator implements PathOptionGenerator{
     
     // generatePathOptions takes the robot location and the remaining num of turns
     public List<PathOption> generatePathOptions(int x, int y, int turns){
-        getDeadEndsTiles();
-        for(Tile tile: pathList){
-            pathList.add(new PathOption(DFS.findPath( maze.tiles[x][y],tile)),turns);           
+        List<Tile> tiles = getDeadEndsTiles();
+        for(Tile tile: tiles){
+            pathList.add(new PathOption(DFS.findPath( maze.tiles[x][y],tile), turns));           
         }
-        // does this use the overritten comparison?????
-        Collection.sort(pathList);
+        Collections.sort(pathList);
         return pathList;
     }
     
      private List<Tile> getDeadEndsTiles(){
          
+			List<Tile> tileList = new ArrayList<Tile>();
             int[][] SHIFT = {
                 {0 , 1}, // going right
                 {1, 0}, // going down
@@ -44,12 +46,12 @@ public class CoinBotPathOptionGenerator implements PathOptionGenerator{
                                     counter++;
                                  }
                             } 
-                            if(counter==3)pathList.add(maze.tiles[x][y]);
+                            if(counter==3)tileList.add(maze.tiles[x][y]);
                             
                      }
                 }
              }
-             return pathList;
+             return tileList;
     
     }
 }
