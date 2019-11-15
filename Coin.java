@@ -28,7 +28,7 @@ public class Coin implements Thing{
 		return this.value;
 	}
 	
-	public void draw() {
+	public void move() {
 		return;
 	}
 	

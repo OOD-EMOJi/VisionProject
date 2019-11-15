@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class Tile {
 	
 	private List<Thing> contents;

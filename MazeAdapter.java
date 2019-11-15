@@ -1,4 +1,5 @@
 import LepinskiEngine.*;
+import java.util.*;
 
 public class MazeAdapter extends Maze {
 	
@@ -26,27 +27,27 @@ public class MazeAdapter extends Maze {
 			int mx = location.getX() * 2 + 1;
 			int my = location.getY() * 2 + 1;
 			
-			Tile tile = this.maze[mx][my];
+			Tile tile = this.tiles[mx][my];
 			
 			//update walls for each tile
 			for(DirType dir : location.getDirections()) {
 				if(dir == DirType.East) {
-					this.maze[mx + 1][my].makePath();
+					this.tiles[mx + 1][my].makePath();
 				}
 				if(dir == DirType.West) {
-					this.maze[mx - 1][my].makePath();
+					this.tiles[mx - 1][my].makePath();
 				}
 				if(dir == DirType.North) {
-					this.maze[mx][my - 1].makePath();
+					this.tiles[mx][my - 1].makePath();
 				}
 				if(dir == DirType.East) {
-					this.maze[mx][my + 1].makePath();
+					this.tiles[mx][my + 1].makePath();
 				}
 			}
 			
 			tile.clearContents();
 			for(CoinType coin : location.getCoins()) {
-				tile.addThing(new Coin(1));
+				tile.addThing(new Coin(mx,my,1));
 			}
 		}
 	}

@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class PathOption implements Comparable<PathOption> {
 	List<Tile> path;
 	int turnsLeft;
