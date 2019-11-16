@@ -62,11 +62,14 @@ public class DepthFirstSearchPathFinder implements Pathfinder{
               };
 
                 for (int[] shift : SHIFTS) {
-                    System.out.println("Doing shifts!");
+                    //System.out.println("Doing shifts!");
+                    System.out.println("currentTile.getX() = "+ currentTile.getX());
+                    System.out.println("currentTile.getY() = "+ currentTile.getY());
                     int x= currentTile.getX() +shift[0];
                     int y= currentTile.getY() + shift[1];
+                    System.out.println("x>=0 = " + x>=0 + " x<width = "+ x<width + " y>=0 = "+ y>=0 + " y< height = "+ y< height);
                     if(x>=0 && x<width && y>=0 && y< height){
-                        System.out.println("in maze!");
+                        System.out.println("new x and new y !");
                         Tile neighbor = maze.tiles[x][y];
                         if (canTraverse(neighbor, visited)){
                             System.out.println("can traverse");
@@ -93,6 +96,7 @@ public class DepthFirstSearchPathFinder implements Pathfinder{
 
     */
         private Boolean canTraverse(Tile tile,boolean[][] visited) {
+            System.out.println("!tile.isWall() = "+!tile.isWall() + " "+ !visited[tile.getX()][tile.getY()] );
             return  !tile.isWall() && !visited[tile.getX()][tile.getY()]; 
         }
 }
