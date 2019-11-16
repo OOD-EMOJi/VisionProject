@@ -1,3 +1,4 @@
+package EMOJI;
 import java.util.*;
 
 public class Mouse implements Thing {
@@ -11,7 +12,7 @@ public class Mouse implements Thing {
 		this.pathFinder = pathFinder;
 		this.x = x;
 		this.y = y;
-		this.path = pathFinder.findPath();
+		//this.path = pathFinder.findPath();
 	}
 	
 	public int getX() {
@@ -35,20 +36,25 @@ public class Mouse implements Thing {
 	}
 
 	
-	public void move() {
-		if(i < path.size()) {
-			
-			Tile curr = path.get(i);
-			
-			this.setX(curr.getX());
-			this.setY(curr.getY());
-			curr.addContents(this);
-			if (i > 0) {
-				Tile prev = path.get(i-1);
-				prev.clearContents(null);
-			}
-			i++;
-		}
-	}
+//	public void move() {
+//		if(i < path.size()) {
+//			
+//			Tile curr = path.get(i);
+//			
+//			this.setX(curr.getX());
+//			this.setY(curr.getY());
+//			curr.addContents(this);
+//			if (i > 0) {
+//				Tile prev = path.get(i-1);
+//				prev.clearContents(null);
+//			}
+//			i++;
+//		}
+//	}
+
+    @Override
+    public void move() {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 	
 }

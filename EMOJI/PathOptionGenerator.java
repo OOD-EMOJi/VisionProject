@@ -1,3 +1,4 @@
+package EMOJI;
 import java.util.*;
 public interface PathOptionGenerator {
 

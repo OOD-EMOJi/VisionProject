@@ -1,3 +1,4 @@
+package EMOJI;
 import javafx.stage.*;
 import javafx.scene.*;
 import javafx.scene.canvas.*;
@@ -18,7 +19,7 @@ public class MazeDrawer {
 				brush.fillRect( x * 20 , y * 20 , 20 , 20);
 				if(maze.tiles[x][y].getContents() != null) {
 					brush.setFill(Color.BLACK);
-					brush.fillText("" + maze.tiles[x][y].getContents().draw(), x * 20 + 5, y * 20 + 15, 20);
+					brush.fillText("" + maze.tiles[x][y].getContents().get(0).draw(), x * 20 + 5, y * 20 + 15, 20);
 				}
 			}
 		}

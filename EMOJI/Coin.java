@@ -1,3 +1,4 @@
+package EMOJI;
 public class Coin implements Thing{
 	
 	int x, y, value;

@@ -1,4 +1,6 @@
 package LepinskiEngine;
+
+import EMOJI.*;
 import java.util.List;
 import java.util.ArrayList;
 import javafx.util.Duration;
@@ -10,10 +12,8 @@ import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-
 
 public class GameEngine extends Application{
     final int NUM_TURNS = 30;
@@ -29,12 +29,17 @@ public class GameEngine extends Application{
     CommandExecution execution;
     Canvas maze_canvas;
 
-    //You can Change TestTeam to be another class you create
-    public GameEngine(){
-	the_team = new TestTeam();
-	execution = new StandardExecution();
+    public static void main(String[] args) {
+        launch(args);
     }
     
+    //You can Change TestTeam to be another class you create
+    public GameEngine(){
+		the_team = new EMOJITeam();
+		execution = new StandardExecution();
+    }
+    
+    @Override
     public void start(Stage primaryStage){
         primaryStage.setTitle("Coin Maze");
         Group root = new Group();

@@ -1,3 +1,4 @@
+package EMOJI;
 import LepinskiEngine.*;
 import java.util.*;
 
@@ -28,7 +29,7 @@ public class MazeAdapter extends Maze {
 			int my = location.getY() * 2 + 1;
 			
 			Tile tile = this.tiles[mx][my];
-			
+			tile.makePath();
 			//update walls for each tile
 			for(DirType dir : location.getDirections()) {
 				if(dir == DirType.East) {

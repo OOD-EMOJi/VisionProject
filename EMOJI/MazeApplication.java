@@ -1,3 +1,4 @@
+package EMOJI;
 import javafx.stage.*;
 import javafx.scene.*;
 import javafx.scene.canvas.*;
@@ -33,8 +34,8 @@ public class MazeApplication extends Application {
 		Maze maze = new Maze(new DepthFirstSearchMazeGenerator());
 		maze.generateMaze(5,5);
 		
-		Mouse mouse = new Mouse(maze.getStart().getX(), maze.getStart().getY(), new WallFollowerPathfinder(maze));
-		maze.getStart().addContents(mouse);
+		Mouse mouse = new Mouse(maze.getStart().getX(), maze.getStart().getY(), new DepthFirstSearchPathFinder(maze));
+		//maze.getStart().addContents(mouse);
 		
 		Timeline loop = new Timeline();
 		loop.setCycleCount(Timeline.INDEFINITE);

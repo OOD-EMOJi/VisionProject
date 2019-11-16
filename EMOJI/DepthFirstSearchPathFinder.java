@@ -1,3 +1,4 @@
+package EMOJI;
 import java.util.Stack;
 import java.util.ArrayList;
 import java.util.*;
@@ -36,8 +37,7 @@ public class DepthFirstSearchPathFinder implements Pathfinder{
     }
     
     public List<Tile> findPath(Tile startTile,Tile endTile){
-        startTile = start;
-        endTile = end;
+        System.out.println(startTile.getX() + " " + startTile.getY() + " " + endTile.getX() + " " + endTile.getY());
         List<Tile> path = new ArrayList<Tile>();
         boolean[][] visited = new boolean[width][height];
         findPath(startTile,endTile, path, visited);
@@ -62,14 +62,14 @@ public class DepthFirstSearchPathFinder implements Pathfinder{
               };
 
                 for (int[] shift : SHIFTS) {
-                   // System.out.println("Doing shifts!");
+                    System.out.println("Doing shifts!");
                     int x= currentTile.getX() +shift[0];
                     int y= currentTile.getY() + shift[1];
                     if(x>=0 && x<width && y>=0 && y< height){
-                       // System.out.println("in maze!");
+                        System.out.println("in maze!");
                         Tile neighbor = maze.tiles[x][y];
                         if (canTraverse(neighbor, visited)){
-                           // System.out.println("can traverse");
+                            System.out.println("can traverse");
                             visited[currentTile.getX()][currentTile.getY()] = true;
                             if(findPath(neighbor,endTile , path, visited)){
                                 path.add(neighbor);				

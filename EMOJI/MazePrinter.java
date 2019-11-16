@@ -1,3 +1,4 @@
+package EMOJI;
 /**
  *
  * @author ellie
@@ -15,9 +16,9 @@ public class MazePrinter implements Observer<Maze>{
                 if (maze.tiles[i][j].isWall())
 //                    elegant solution if you are on mac/linux:
 //                    System.out.print("██");
-                    System.out.print("##");
+                    System.out.print("#");
                 else
-                    System.out.print(maze.tiles[i][j].getContents().draw());
+                    System.out.print(" ");
             }
             System.out.println();
         }

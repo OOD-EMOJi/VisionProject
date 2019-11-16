@@ -1,3 +1,4 @@
+package EMOJI;
 public interface Thing {
 	public int getX();
 	public int getY();

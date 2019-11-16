@@ -1,3 +1,5 @@
+package EMOJI;
+
 import LepinskiEngine.*;
 
 public interface RobotBehavior{

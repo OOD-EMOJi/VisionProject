@@ -1,3 +1,5 @@
+package EMOJI;
+
 import LepinskiEngine.*;
 import static LepinskiEngine.DirType.*;
 import java.util.*;

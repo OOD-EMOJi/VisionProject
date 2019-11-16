@@ -1,3 +1,4 @@
+package EMOJI;
 public class FilledMazeGenerator implements MazeGenerator {
 	public Tile[][] generateMaze(int w, int h) {
 		Tile[][] r = new Tile[w][h];

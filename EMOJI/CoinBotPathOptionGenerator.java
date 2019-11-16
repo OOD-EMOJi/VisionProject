@@ -1,4 +1,4 @@
-import LepinskiEngine.*;
+package EMOJI;
 import java.util.*;
 
 public class CoinBotPathOptionGenerator implements PathOptionGenerator{
@@ -14,6 +14,7 @@ public class CoinBotPathOptionGenerator implements PathOptionGenerator{
         this.height= maze.tiles[0].length ;
         this.width = maze.tiles.length ;
         this.DFS = new DepthFirstSearchPathFinder(maze);
+        pathList = new ArrayList<PathOption>();
     }
     
     // generatePathOptions takes the robot location and the remaining num of turns
@@ -22,6 +23,7 @@ public class CoinBotPathOptionGenerator implements PathOptionGenerator{
         for(Tile tile: tiles){
             pathList.add(new PathOption(DFS.findPath( maze.tiles[x][y],tile), turns));           
         }
+        System.out.println(pathList);
         Collections.sort(pathList);
         return pathList;
     }
@@ -46,7 +48,12 @@ public class CoinBotPathOptionGenerator implements PathOptionGenerator{
                                     counter++;
                                  }
                             } 
-                            if(counter==3)tileList.add(maze.tiles[x][y]);
+                           
+                            if(counter==3){ 
+                                System.out.println("counter is 3");
+                                
+                                tileList.add(maze.tiles[x][y]);
+                            }
                             
                      }
                 }
