@@ -11,17 +11,11 @@ public class MazePrinter implements Observer<Maze>{
 	
     public void printMaze(Maze maze) {
         System.out.println();
-        for (int i=0; i < maze.tiles.length; i++) {
-            for (int j=0; j < maze.tiles[i].length; j++) {
-                if (maze.tiles[i][j].isWall())
-//                    elegant solution if you are on mac/linux:
-//                    System.out.print("██");
-                    System.out.print("#");
-                else
-                    System.out.print(" ");
+        for (int j = 0; j < maze.tiles[0].length; j++) {
+            for (int i = 0; i < maze.tiles.length; i++) {
+                System.out.print(maze.tiles[i][j].isWall() ? "#" : (maze.tiles[i][j].getContents().size() > 0 ?  maze.tiles[i][j].getContents().get(0).draw() : " "));
             }
             System.out.println();
         }
-        System.out.println();
     }
 }

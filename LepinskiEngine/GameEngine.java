@@ -16,7 +16,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class GameEngine extends Application{
-    final int NUM_TURNS = 30;
+    final int NUM_TURNS = 10;
     final String team_name = "Test Team";
     final double DELAY_TIME = 2.0;
     final String maze_file = "example1.maze";

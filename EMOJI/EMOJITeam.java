@@ -36,9 +36,8 @@ public class EMOJITeam implements PlayerTeam {
     Map<Integer, RobotBehavior> behaviors; // keep track of each robot and their behavior
 
     public void startGame(List<Robot> bots, GameState state) {
-        //stubbed
-        mazeA = new MazeAdapter(state);
         //1. Initialize maze
+        mazeA = new MazeAdapter(state);
         mazeA.generateMaze();
         //2. Initialize Bot Map
         behaviors = new HashMap<Integer, RobotBehavior>();
@@ -59,16 +58,11 @@ public class EMOJITeam implements PlayerTeam {
     }
 
     public List<Command> requestCommands(List<Location> information, List<Robot> robotsAwaitingCommand, GameState state) {
-        //stubbed
         //0. make new list of commands to return
         List<Command> commands = new ArrayList<Command>();
         //1. Update the Maze
-        for (Location location : information) {
-            System.out.println(location.getX() + " " + location.getY());
-        }
         mazeA.updateMaze(information);
-        MazePrinter p = new MazePrinter();
-        p.printMaze(mazeA);
+        
         //2. For every robot awaiting command:
         for (Robot bot : robotsAwaitingCommand) {
             RobotBehavior behavior = behaviors.get(bot.getID());
@@ -87,6 +81,8 @@ public class EMOJITeam implements PlayerTeam {
         //a. retrieve behavior from map
         //b. call get command and add to list
         //3. return list
+        MazePrinter p = new MazePrinter();
+        p.printMaze(mazeA);
         return commands;
     }
 }

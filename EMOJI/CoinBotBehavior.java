@@ -16,20 +16,21 @@ public class CoinBotBehavior implements RobotBehavior {
     }
 
     public Command getCommand(Robot robot, Location location) {
-        if (location.getCoins() == null) {
+        if (location.getCoins() != null && location.getCoins().size() > 0) {
+            //((CoinBotPathOptionGenerator)pathOptionGenerator).maze.tiles[location.getX() * 2 + 1][location.getY() * 2 + 1].clearContents();
             return new CommandCoin(robot);
         }
         // Make paths
         int x = location.getX();
         int y = location.getY();
-        List<PathOption> pathList = pathOptionGenerator.generatePathOptions(x, y, currentTurns);
+        List<PathOption> pathList = pathOptionGenerator.generatePathOptions(2 * x + 1, 2 * y + 1, 2 * currentTurns);
         // Decide best path and get the next step
         PathOption pathOption = pathList.get(pathList.size() - 1);
-        System.out.println("Path length: " + pathOption.path.size());
-        Tile nextStep = pathList.get(pathList.size() - 1).path.get(1);
-        int x2 = nextStep.getX();
-        int y2 = nextStep.getY();
-        Command command = new CommandMove(robot, getDirection(x, y, x2, y2));
+        Tile currentTile = pathOption.path.get(0);
+        Tile nextStep = pathOption.path.get(1);
+        Command command = new CommandMove(robot, getDirection(currentTile.getX(), currentTile.getY(), nextStep.getX(), nextStep.getY()));
+        System.out.println(((CommandMove)command).getDir());
+        currentTurns -= 1;
         return command;
     }
 
@@ -42,16 +43,16 @@ public class CoinBotBehavior implements RobotBehavior {
             {-1, 0} // going North`
         };
         if (x2 - x1 == 0 && y2 - y1 == 1) {
-            return DirType.East;
-        }
-        if (x2 - x1 == 1 && y2 - y1 == 0) {
             return DirType.South;
         }
+        if (x2 - x1 == 1 && y2 - y1 == 0) {
+            return DirType.East;
+        }
         if (x2 - x1 == 0 && y2 - y1 == -1) {
-            return DirType.West;
+            return DirType.North;
         }
         if (x2 - x1 == -1 && y2 - y1 == 0) {
-            return DirType.North;
+            return DirType.West;
         } else {
             return null;
         }

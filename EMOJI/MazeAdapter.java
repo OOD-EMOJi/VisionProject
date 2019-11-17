@@ -34,17 +34,22 @@ public class MazeAdapter extends Maze {
 			for(DirType dir : location.getDirections()) {
 				if(dir == DirType.East) {
 					this.tiles[mx + 1][my].makePath();
+                                        if(mx + 2 < this.tiles.length) this.tiles[mx + 2][my].makePath();
 				}
 				if(dir == DirType.West) {
 					this.tiles[mx - 1][my].makePath();
+                                        if(mx - 2 >= 0) this.tiles[mx - 2][my].makePath();
 				}
 				if(dir == DirType.North) {
 					this.tiles[mx][my - 1].makePath();
+                                        if(my - 2 >= 0) this.tiles[mx][my - 2].makePath();
 				}
-				if(dir == DirType.East) {
+				if(dir == DirType.South) {
 					this.tiles[mx][my + 1].makePath();
+                                        if(my + 2 < this.tiles[mx].length) this.tiles[mx][my + 2].makePath();
 				}
 			}
+                        
 			
 			tile.clearContents();
 			for(CoinType coin : location.getCoins()) {
