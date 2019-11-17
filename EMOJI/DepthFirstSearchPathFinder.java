@@ -86,7 +86,6 @@ public class DepthFirstSearchPathFinder implements Pathfinder {
 
     /*
       Helper function
-
      */
     private Boolean canTraverse(Tile tile, boolean[][] visited) {
         return !tile.isWall() && !visited[tile.getX()][tile.getY()];
