@@ -22,6 +22,10 @@ public class Maze implements Observable<Maze>{
 	**/
     private MazeGenerator generator;
 
+	private int[][] SHIFTS = new int[][]{
+		{1,0},{-1,0},{0,1},{0,-1}
+	};
+
 	private List<Observer<Maze>> observers;
 
     public Maze(MazeGenerator generator) {
@@ -54,6 +58,21 @@ public class Maze implements Observable<Maze>{
 	
 	public void setEnd(Tile end) {
 		this.end = end;
+	}
+	
+	public List<Tile> getNeighbors(Tile tile) {
+		List<Tile> neighbors = new ArrayList<Tile>();
+	
+		int x = tile.getX();
+		int y = tile.getY();
+		
+		for(int[] shift : SHIFTS) {
+			int xx = x + shift[0];
+			int yy = y + shift[1];
+			if(xx >= 0 && xx < tiles.length && yy >= 0 && yy < tiles[xx].length) neighbors.add(tiles[xx][yy]);
+		}
+	
+		return neighbors;
 	}
 	
 	public void registerObserver(Observer<Maze> observer) {

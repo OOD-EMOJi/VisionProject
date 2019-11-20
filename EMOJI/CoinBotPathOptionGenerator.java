@@ -6,7 +6,7 @@ public class CoinBotPathOptionGenerator implements PathOptionGenerator {
 
     public Maze maze;
     public List<PathOption> pathList;
-    private Pathfinder DFS;
+    private Pathfinder pathfinder;
     private int height;
     private int width;
 
@@ -14,7 +14,7 @@ public class CoinBotPathOptionGenerator implements PathOptionGenerator {
         this.maze = maze;
         this.height = maze.tiles[0].length;
         this.width = maze.tiles.length;
-        this.DFS = new DepthFirstSearchPathFinder(maze);
+        this.pathfinder = new BreadthFirstSearchPathFinder(maze);
         pathList = new ArrayList<PathOption>();
     }
 
@@ -23,7 +23,7 @@ public class CoinBotPathOptionGenerator implements PathOptionGenerator {
         pathList = new ArrayList<PathOption>();
         List<Tile> tiles = getDeadEndsTiles();
         for (Tile tile : tiles) {
-            PathOption option = new PathOption(DFS.findPath(maze.tiles[x][y], tile), turns);
+            PathOption option = new PathOption(pathfinder.findPath(maze.tiles[x][y], tile), turns);
             option.countPoints();
             if (option.path.size() > 0) {
                 pathList.add(option);
