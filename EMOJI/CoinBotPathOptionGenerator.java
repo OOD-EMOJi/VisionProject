@@ -21,7 +21,7 @@ public class CoinBotPathOptionGenerator implements PathOptionGenerator {
     // generatePathOptions takes the robot location and the remaining num of turns
     public List<PathOption> generatePathOptions(int x, int y, int turns) {
         pathList = new ArrayList<PathOption>();
-        List<Tile> tiles = getDeadEndsTiles();
+        List<Tile> tiles = getCoins();
         for (Tile tile : tiles) {
             PathOption option = new PathOption(pathfinder.findPath(maze.tiles[x][y], tile), turns);
             option.countPoints();
@@ -33,11 +33,33 @@ public class CoinBotPathOptionGenerator implements PathOptionGenerator {
         }
         //System.out.println(pathList);
         
-        Collections.sort(pathList, comparator);
+        Collections.sort(pathList);
         for (PathOption pathOption : pathList) {
             System.out.println(pathOption);
         }
         return pathList;
+    }
+	
+	private List<Tile> getCoins() {
+
+        List<Tile> tileList = new ArrayList<Tile>();
+        int[][] SHIFT = {
+            {0, 1}, // going right
+            {1, 0}, // going down
+            {0, -1}, // going left
+            {-1, 0} // going up`
+        };
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < height; y++) {
+                        List<Thing> contents = maze.tiles[x][y].getContents();
+                        for (Thing t : contents) {
+                            if (t instanceof Coin) {
+                                tileList.add(maze.tiles[x][y]);
+                            }
+                        }      
+            }
+        }
+        return tileList;
     }
 
     private List<Tile> getDeadEndsTiles() {
