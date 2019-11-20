@@ -9,7 +9,7 @@ public class CoinBotPathOptionGenerator implements PathOptionGenerator {
     private Pathfinder pathfinder;
     private int height;
     private int width;
-
+	private int firstTimeTurns;
 
     public CoinBotPathOptionGenerator(Maze maze) {
         this.maze = maze;
@@ -17,7 +17,7 @@ public class CoinBotPathOptionGenerator implements PathOptionGenerator {
         this.width = maze.tiles.length;
         this.pathfinder = new BreadthFirstSearchPathFinder(maze);
         pathList = new ArrayList<PathOption>();
-        int firstTimeTurns=0;
+        this.firstTimeTurns=0;
     }
 
     // generatePathOptions takes the robot location and the remaining num of turns
@@ -25,9 +25,14 @@ public class CoinBotPathOptionGenerator implements PathOptionGenerator {
         if (firstTimeTurns==0)firstTimeTurns= turns;
         pathList = new ArrayList<PathOption>();
         List<Tile> tiles;
+		Comparator<PathOption> comparator;
         if(turns < (firstTimeTurns/2)){
             tiles = getCoins();
-        }else{ tiles = getDeadEndsTiles();}
+			comparator = new PathOption.GetCoinPathOptionComparator();
+        }else{ 
+			tiles = getDeadEndsTiles();
+			comparator = new PathOption.DeadEndPathOptionComparator();
+		}
         
         for (Tile tile : tiles) {
             PathOption option = new PathOption(pathfinder.findPath(maze.tiles[x][y], tile), turns);
@@ -40,7 +45,7 @@ public class CoinBotPathOptionGenerator implements PathOptionGenerator {
         }
         //System.out.println(pathList);
         
-        Collections.sort(pathList);
+        Collections.sort(pathList, comparator);
         for (PathOption pathOption : pathList) {
             System.out.println(pathOption);
         }

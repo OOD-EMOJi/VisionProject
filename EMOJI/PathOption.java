@@ -44,4 +44,21 @@ public class PathOption implements Comparable<PathOption> {
         return "PathOption: " + "turns: " + turnsLeft + " size: " + path.size() + " points: " + points + " eF: " + earlierFactor;
     }
 
+	public static class DeadEndPathOptionComparator implements Comparator<PathOption> {
+		public int compare(PathOption a, PathOption b) {
+			if (a.points != b.points) {
+				return b.points - a.points;
+			} else {
+				return a.earlierFactor - b.earlierFactor;
+			}
+		}
+	}
+
+	public static class GetCoinPathOptionComparator implements Comparator<PathOption> {
+		public int compare(PathOption a, PathOption b) {
+			return b.earlierFactor - a.earlierFactor;
+		}
+	}
+
+
 }
