@@ -18,17 +18,19 @@ public class BreadthFirstSearchPathFinder implements Pathfinder {
 		Map<Tile, Tile> prev = new HashMap<Tile, Tile>();
 		Queue<Tile> queue = new LinkedList<Tile>();
 		
+		//start with startTile
 		visited[startTile.getX()][startTile.getY()] = true;
 		prev.put(startTile, null);
 		queue.add(startTile);
 		
+		//bfs
 		while(!queue.isEmpty()) {
 			Tile tile = queue.remove();
 			List<Tile> neighbors = maze.getNeighbors(tile);
 			for(Tile neighbor : neighbors) {
-				if(visited[neighbor.getX()][neighbor.getY()] == false) {
+				if(visited[neighbor.getX()][neighbor.getY()] == false && neighbor.isWall() == false) {
 					visited[neighbor.getX()][neighbor.getY()] = true;
-					prev.put(neighbor, tile);
+					prev.put(neighbor, tile); //remember previous tile
 					queue.add(neighbor);
 				}
 			}
@@ -41,6 +43,7 @@ public class BreadthFirstSearchPathFinder implements Pathfinder {
 		}
 		Collections.reverse(path);
 		if(path.get(0) != startTile) path.clear();
+		
 		return path;
 	}
 }

@@ -25,6 +25,7 @@ public class CoinBotPathOptionGenerator implements PathOptionGenerator {
         for (Tile tile : tiles) {
             PathOption option = new PathOption(pathfinder.findPath(maze.tiles[x][y], tile), turns);
             option.countPoints();
+			
             if (option.path.size() > 0) {
                 pathList.add(option);
             }
