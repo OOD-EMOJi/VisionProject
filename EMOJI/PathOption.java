@@ -25,6 +25,7 @@ public class PathOption implements Comparable<PathOption> {
                 if (t instanceof Coin) {
                     points += ((Coin) t).getValue();
                     earlierFactor += i;
+                    i++;
                 }
             }
         }
