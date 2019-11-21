@@ -1,3 +1,20 @@
+/*
+
+This class represents the algorithm for the coin bot. It has the getCommand() method that gets called each turn in the game.
+There are two different commands for the coin bot, either picking a coin or moving to a nearby tile. 
+
+In the getCommand():
+1] If the current tile of the coin bot has a coin, we create a coinCommand for the coin bot, 
+2] else, the call the generatePathOptions() method that retunrs a list of pathOption objects that is already sorted to give the coin robot the best pathOption.
+3] take the best pathOption
+4] get the direction for the next move for the coin bot
+5] create a moveCommand for the coin bot with the new dirction
+
+
+
+
+*/
+
 package EMOJI;
 
 import LepinskiEngine.*;
