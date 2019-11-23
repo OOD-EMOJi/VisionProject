@@ -50,7 +50,7 @@ public class EMOJITeam implements PlayerTeam {
             if (type == ModelType.CoinBot) {
                 behavior = new CoinBotBehavior(state.turns_remaining, bot, new CoinBotPathOptionGenerator(mazeA));
             } else {
-                behavior = hasLeft ? new LeftWallScout() : new RightWallScout();
+                behavior = hasLeft ? new ClockwiseTwirler(DirType.West) : new RandomScout();
                 hasLeft = true;
             }
             behaviors.put(id, behavior);
