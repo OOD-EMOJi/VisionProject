@@ -1,4 +1,4 @@
-# Vision Project 🙀🌟👀🙃🐭
+# Vision Project 🙀🌟👀🙃
 
 ## Install and run
 
